@@ -20,11 +20,11 @@ render() {
 
   const orderEls = this.props.orders.map(order => {
     return (
-      <div className="order">
+      <div key={order.id} className="order">
         <h3>{order.name}</h3>
-        <ul className="ingredient-list">
+        <ul  className="ingredient-list">
           {order.ingredients.map(ingredient => {
-            return <li>{ingredient}</li>
+            return <li key={Math.random()}>{ingredient}</li>
           })}
         </ul>
       </div>
