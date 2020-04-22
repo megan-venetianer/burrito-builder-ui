@@ -10,14 +10,13 @@ class Orders extends Component {
     this.props = props;
   }
 
-  componentDidMount() {
-    getOrders()
-      .then(data => this.props.setOrders(data.orders))
-      .catch(err => console.error('Error fetching:', err));
-  }
+componentDidMount() {
+  getOrders()
+    .then(data => this.props.setOrders(data.orders))
+    .catch(err => console.error('Error fetching:', err));
+}
 
 render() {
-
   const orderEls = this.props.orders.map(order => {
     return (
       <div key={order.id} className="order">

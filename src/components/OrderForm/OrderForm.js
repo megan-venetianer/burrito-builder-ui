@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { submitOrder } from '../../apiCalls';
+import { connect } from 'react-redux';
+import { addOrder } from '../../actions';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -8,6 +11,12 @@ class OrderForm extends Component {
       name: '',
       ingredients: []
     };
+  }
+
+  addNewOrder = () => {
+    submitOrder(this.state.name, this.state.ingredients)
+    .then(order => this.props.addOrder(order))
+    .catch(err => console.log(err.message))
   }
 
   handleNameChange = e => {
@@ -21,6 +30,7 @@ class OrderForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.addNewOrder();
     this.clearInputs();
   }
 
@@ -68,4 +78,8 @@ class OrderForm extends Component {
   }
 }
 
-export default OrderForm;
+const mapDispatchToProps = dispatch => ({
+  addOrder: (order) => dispatch(addOrder(order))
+});
+
+export default connect(null, mapDispatchToProps)(OrderForm);

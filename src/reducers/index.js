@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { orders } from './orders';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   orders,
 });
 
